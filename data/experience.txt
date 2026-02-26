@@ -1,0 +1,17 @@
+COMPANY: Wipro Limited
+ROLE: Software Engineer Intern
+DURATION: Aug 2023 – Dec 2023
+LOCATION: Mumbai, India
+ - Optimized PostgreSQL queries through indexing and connection pooling, cutting transaction processing time by 20% and reducing database load by 35% during peak traffic
+ - Implemented Redis caching for frequent lookups and built webhook handlers with retry logic and comprehensive error handling
+ - Collaborated with ICICI Bank's technical team to resolve API integration issues, enforcing OAuth 2.0 authentication flows and AES-256 encryption standards to meet production security requirements
+
+---
+
+COMPANY: Persistent Systems
+ROLE: Data Scientist Intern
+DURATION: Summer 2023
+LOCATION: Remote
+ - Engineered preprocessing pipelines on 50K+ customer records — RFM feature engineering, outlier detection, and SMOTE for class imbalance
+ - Built a Random Forest + Logistic Regression ensemble achieving 85% accuracy and 0.78 weighted F1, with GridSearchCV tuning and SHAP interpretability analysis
+ - Deployed models with Docker and FastAPI endpoints, CloudWatch monitoring, auto-scaling, and CI/CD for automated retraining

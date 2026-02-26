@@ -1,0 +1,54 @@
+NAME: BiasGuard — Enterprise AI Fairness Monitoring Platform
+TAG: GITHUB
+STACK: FastAPI · React 19 · TypeScript · LangGraph · GPT-4o-mini · AIF360 · Pinecone · PostgreSQL · Redis · GKE · Docker · Kubernetes · MLflow · ReportLab · Matplotlib · Slack API · WebSocket · OAuth 2.0 · JWT · RBAC · GitHub Actions · CI/CD · LangChain · Python
+GITHUB: https://github.com/Regata3010/AWS-LLM
+DESC: Real-time AI fairness monitoring platform built for FinTech BNPL and HR Tech compliance. Detects bias in production ML models 24/7 across 7 AIF360 fairness metrics — disparate impact, statistical parity, equal opportunity — against CFPB, EEOC, and EU AI Act thresholds before regulators do. Features a LangGraph-based compliance agent combining RAG and CAG over 838 CFPB/EEOC regulation chunks via Pinecone, with custom tool nodes for real-time bias metric retrieval. Includes role-based access control scoped by organization, automated PDF compliance report generation with bias drift charts and intersectionality breakdowns, and a Slack alert pipeline with threshold-based triggering for violation detection across individual and intersectional demographic groups. Processes predictions in real-time via RESTful APIs with WebSocket broadcasting, auto-scaling and CI/CD via GitHub Actions.
+
+
+---
+
+
+NAME: AI CodeBugger
+TAG: GITHUB
+STACK: FastAPI · Next.js 15 · React 19 · TypeScript · Tailwind CSS · Streamlit · LangChain · GPT-4 · ChromaDB · Firestore · GCP · Docker · Kubernetes
+GITHUB: https://github.com/Regata3010/AI-CodeBugger
+DESC: Enterprise-grade AI code review platform. Supports single files, ZIP projects, and direct GitHub repo analysis. Runs 5 analysis types — bug detection, optimization, test generation, edge cases, documentation — in under 30 seconds.
+
+---
+
+
+NAME: EchoAI - Sentiment Analysis & Response Platform
+TAG: NLP · MLOPS · SENTIMENT ANALYSIS
+STACK: Python · BERT (bert-base-uncased) · DistilBERT (SST-2) · HuggingFace Transformers · PyTorch · spaCy · NLTK · Scikit-learn · Pandas · NumPy · Optuna · Plotly · Matplotlib · Seaborn · Streamlit · Apache Airflow · MLflow · DVC · Docker · GCP Cloud Run · GCP Artifact Registry · GCS · Firebase Firestore · SerpAPI · GitHub Actions · Pytest · Joblib
+GITHUB: https://github.com/Regata3010/echo-ai
+DESC: End-to-end NLP pipeline that analyzes restaurant reviews and generates context-aware business responses. Multi-stage architecture runs critical issue detection, fine-tuned BERT sentiment classification (72% balanced accuracy, 5 classes), sarcasm detection, and clause-level aspect scoring (food, service, ambiance, price, cleanliness) using DistilBERT. Data ingested via SerpAPI and Apify Google Places scraper, stored in Firebase Firestore, and orchestrated through an Apache Airflow DAG. Hyperparameters tuned with Optuna. Bias detection and model validation enforced in CI. Deployed on GCP Cloud Run via Docker with MLflow experiment tracking, DVC data versioning, and a Streamlit UI.
+
+
+
+---
+
+NAME: LA Crime Forecast
+TAG: MACHINE LEARNING · FORECASTING · NLP
+STACK: Python · Streamlit · XGBoost · TensorFlow · PyTorch · PyTorch Forecasting · Scikit-learn · Pandas · NLTK · Gensim (Word2Vec) · TextBlob · SHAP · PRAW · LangChain · Folium
+GITHUB: https://github.com/Regata3010/CrimeLA1
+DESC: End-to-end crime forecasting pipeline built on LA crime data from 2020 to present. Ingests and cleans 100k+ records with geospatial filtering, engineers features using NLP/TF-IDF on crime descriptions, and trains a hybrid XGBoost + LSTM model for crime count prediction. Serves forecasts through a Streamlit dashboard with real-time Google News sentiment analysis, interactive Folium maps, and top-3 crime type prediction per neighborhood.
+
+
+---
+
+NAME: AutoApply — AI Job Application Automation
+FILE: AutoApply.n8n
+TAG: AUTOMATION · AI · WORKFLOW
+STACK: n8n · OpenAI GPT-4 · JSearch API · RapidAPI · Google Sheets API · Gmail API · Google Docs API · LaTeX · JavaScript · Webhooks
+GITHUB:
+DEMO:
+DESC: End-to-end automated job application pipeline built on n8n. Triggered via webhook with a target role, it fetches live full-time US job listings via JSearch/RapidAPI, filters out roles requiring security clearance, citizenship, or director-level seniority, then calls GPT-4 to tailor a LaTeX-formatted resume and write a role-specific cover letter for each job. Logs every application to a Google Sheets tracker with date, company, role, and status — then emails the tailored resume and cover letter directly to inbox. Zero manual effort per application.
+
+---
+
+NAME: MachineLearning
+TAG: CLASSIFICATION · REGRESSION · CLUSTERING · SUPERVISED LEARNING · UNSUPERVISED LEARNING · DEEP LEARNING · NEURAL NETWORKS · COMPUTER VISION · CNN · TRANSFER LEARNING · DATA AUGMENTATION · NLP · TIME SERIES · FORECASTING · ARIMA · DATA PIPELINE · PREPROCESSING · FEATURE ENGINEERING · EDA · DATA CLEANING · DATA VISUALIZATION · INTERACTIVE · OPTIMIZATION · REGULARIZATION · HYPERPARAMETER TUNING · BACKPROPAGATION · SYNTHETIC DATA · STOCK ANALYSIS · CUSTOMER SEGMENTATION
+STACK: Python · PyTorch · Keras · Scikit-learn · Pandas · NumPy · Matplotlib · Plotly · Statsmodels · Torchvision · Logistic Regression · Decision Tree · K-Nearest Neighbors · Linear Discriminant Analysis · Naive Bayes · Support Vector Machine · K-Means · Linear Regression · Polynomial Regression · ANN · CNN · Backpropagation · SGD · Mini-Batch Gradient Descent · ARIMA · Dropout · Transfer Learning · Elbow Method · Cross-Validation
+GITHUB: https://github.com/Regata3010/MachineLearningBasics
+DESC: End-to-end machine learning practice repository organized across 6 domains. The Classical ML folder benchmarks 6 classification algorithms (Logistic Regression, Decision Tree, KNN, LDA, Naive Bayes, SVM) on the Iris dataset, runs regression on housing and synthetic datasets, performs K-Means clustering with the elbow method, builds Scikit-learn preprocessing pipelines, and conducts a 4-part progressive analysis of Amazon stock data covering EDA, feature engineering, and trend analysis. The Computer Vision folder builds and trains a custom PyTorch CNN from scratch, applies transfer learning to classify pizza/steak/sushi food images, and explores torchvision augmentation transforms including flipping, rotation, and color jitter. The Data Visualization folder creates interactive distribution and geographic plots with Plotly, produces Matplotlib charts, and analyzes customer loyalty segmentation and behavior with visual dashboards. The Deep Learning folder implements feedforward ANNs for classification and regression, manually derives backpropagation across 3 notebooks progressing to Keras, trains PyTorch models on synthetic blob and circle datasets with decision boundary plots, and compares SGD, full batch, and mini-batch gradient descent optimization strategies with dropout regularization and Keras hyperparameter tuning. The Time Series folder applies ARIMA forecasting to real-world time series data, covering stationarity testing, order selection (p,d,q), and forecast evaluation. The VariousModelsTraining folder covers KNN and Naive Bayes classifiers, data cleaning pipelines, and structured homework assignments applying ML models to real datasets.
+

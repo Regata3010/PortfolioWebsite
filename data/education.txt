@@ -1,0 +1,15 @@
+SCHOOL: Northeastern University
+DEGREE: Master of Science, Computer Science
+LOCATION: Boston, MA
+YEARS: 2024 – 2026
+GPA: 3.6 / 4.0
+COURSES: Foundations of Data Analytics, Data Management for Analytics, Data Visualization, Data Mining, MLOps, DeepLearning, Applied Generative AI 
+
+---
+
+SCHOOL: Manipal University Jaipur
+DEGREE: Bachelor of Technology, Computer Science & Engineering
+LOCATION: Jaipur, India
+YEARS: 2020 – 2024
+GPA: 8.02 / 10.0
+COURSES: Data Structures, Algorithms, Database Systems, Operating Systems

@@ -1,0 +1,11 @@
+# Python server artifacts
+__pycache__/
+*.pyc
+pvenv/
+
+# Local dev
+.DS_Store
+*.log
+
+# Sensitive files — NEVER commit
+My workflow.json

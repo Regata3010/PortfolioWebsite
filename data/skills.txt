@@ -1,0 +1,28 @@
+CATEGORY: AI / LLMs
+ITEMS: LangChain, LangGraph, GPT-4, GPT-4o-mini, Claude AI, AIF360, BERT, DistilBERT, HuggingFace Transformers, Pinecone, ChromaDB, RAG, CAG, Prompt Engineering
+
+---
+
+CATEGORY: Machine Learning
+ITEMS: Scikit-learn, XGBoost, PyTorch, TensorFlow, Keras, Random Forest, Logistic Regression, SHAP, Optuna, MLflow, DVC, SMOTE, GridSearchCV, Transfer Learning
+
+---
+
+CATEGORY: Data Science
+ITEMS: Pandas, NumPy, SQL, R, Matplotlib, Seaborn, Plotly, NLTK, spaCy, Gensim, TextBlob, Feature Engineering, EDA, ARIMA, Time Series
+
+---
+
+CATEGORY: Backend
+ITEMS: Python, FastAPI, PostgreSQL, Redis, OAuth 2.0, JWT, WebSockets, REST APIs, RBAC
+
+---
+
+CATEGORY: Frontend
+ITEMS: React 19, Next.js 15, TypeScript, Tailwind CSS, Streamlit
+
+---
+
+CATEGORY: Cloud / DevOps / MLOps
+ITEMS: GCP, GKE, Docker, Kubernetes, GitHub Actions, CI/CD, Apache Airflow, CloudWatch, Firebase, Firestore, GCS, DVC, MLflow
+

@@ -1,0 +1,10 @@
+NAME: Arav Pandey
+ROLE: AI/ML Engineer & Full-Stack Developer
+LOCATION: Boston, MA
+STATUS: Actively seeking full-time roles (2026)
+
+BIO:
+I'm Arav Pandey, a Data Analytics Engineering graduate student at Northeastern University building production AI systems that actually work in the real world — not just in notebooks. My work spans LangGraph-based agentic platforms, full-stack ML deployment on GCP and AWS, and end-to-end pipelines from raw data to live inference. I've shipped everything from enterprise AI fairness monitoring systems to fine-tuned NLP models, always owning the problem from architecture through deployment. Previously I worked at Persistent Systems and Wipro, where I built churn prediction pipelines and payment gateway integrations handling thousands of daily transactions. I'm currently looking for roles in ML Engineering, Forward Deployed Engineering, and Applied AI where I can work on hard problems close to production.
+
+UNIVERSITY: Currently pursuing MS in Computer Science @ Northeastern University
+LOOKING_FOR: AI Engineering · ML Engineering · Data Science · SWE
