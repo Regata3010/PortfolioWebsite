@@ -40,8 +40,7 @@ NAME: AutoApply — AI Job Application Automation
 FILE: AutoApply.n8n
 TAG: AUTOMATION · AI · WORKFLOW
 STACK: n8n · OpenAI GPT-4 · JSearch API · RapidAPI · Google Sheets API · Gmail API · Google Docs API · LaTeX · JavaScript · Webhooks
-GITHUB:
-DEMO:
+GITHUB: https://github.com/Regata3010/LinkedlnAutomation
 DESC: End-to-end automated job application pipeline built on n8n. Triggered via webhook with a target role, it fetches live full-time US job listings via JSearch/RapidAPI, filters out roles requiring security clearance, citizenship, or director-level seniority, then calls GPT-4 to tailor a LaTeX-formatted resume and write a role-specific cover letter for each job. Logs every application to a Google Sheets tracker with date, company, role, and status — then emails the tailored resume and cover letter directly to inbox. Zero manual effort per application.
 
 ---

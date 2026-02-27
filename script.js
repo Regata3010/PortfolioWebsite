@@ -145,7 +145,7 @@ function parseSkills(text) {
 
 function parseContact(text) {
     const get = k => { const m = text.match(new RegExp(`^${k}:\\s*(.+)`,'m')); return m ? m[1].trim() : ''; };
-    const email=get('EMAIL'), github=get('GITHUB'), linkedin=get('LINKEDIN');
+    const email=get('EMAIL'), github=get('GITHUB'), linkedin=get('LINKEDIN'), phone=get('CONTACT');
     return `<div class="contact-grid">
         <a href="mailto:${email}" class="contact-link">
             <span class="contact-link-icon">Email</span>
@@ -168,6 +168,13 @@ function parseContact(text) {
                 <span class="contact-link-value">${linkedin.replace('https://','')}</span>
             </div>
         </a>
+        ${phone ? `<a href="tel:${phone}" class="contact-link">
+            <span class="contact-link-icon">Phone</span>
+            <div class="contact-link-text">
+                <span class="contact-link-label">Call / Text</span>
+                <span class="contact-link-value">${phone}</span>
+            </div>
+        </a>` : ''}
         <div class="contact-cta">
             <p>Open to: <span>${get('OPEN_TO')}</span></p>
             <p>Roles: <span>${get('ROLES')}</span></p>

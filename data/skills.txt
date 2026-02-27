@@ -14,12 +14,12 @@ ITEMS: Pandas, NumPy, SQL, R, Matplotlib, Seaborn, Plotly, NLTK, spaCy, Gensim, 
 ---
 
 CATEGORY: Backend
-ITEMS: Python, FastAPI, PostgreSQL, Redis, OAuth 2.0, JWT, WebSockets, REST APIs, RBAC
+ITEMS: Python, FastAPI, PostgreSQL, Redis, OAuth 2.0, JWT, WebSockets, REST APIs, RBAC, C++, Go, Rust
 
 ---
 
 CATEGORY: Frontend
-ITEMS: React 19, Next.js 15, TypeScript, Tailwind CSS, Streamlit
+ITEMS: React 19, Next.js 15, TypeScript, JavaScript, Tailwind CSS, Streamlit
 
 ---
 
