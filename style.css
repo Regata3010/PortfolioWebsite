@@ -525,5 +525,13 @@ body {
 .blink { animation: blink 1s step-end infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
+/* ── Tech icons (Devicon) ────────────────────────────────────────── */
+.tech-icon {
+    font-size: 0.85em;
+    margin-right: 0.3em;
+    vertical-align: middle;
+    opacity: 0.85;
+}
+
 /* ── Misc ────────────────────────────────────────────── */
 #main-output { opacity: 0; transition: opacity 0.4s ease; }

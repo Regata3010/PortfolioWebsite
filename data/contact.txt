@@ -1,6 +1,7 @@
 EMAIL: pandey.ara@northeastern.edu
 GITHUB: https://github.com/Regata3010
 LINKEDIN: https://www.linkedin.com/in/aravpandey/
+CONTACT: +1-617-356-4517
 LOCATION: Boston, MA / Remote
 OPEN_TO: Full-time
 ROLES: AI Engineer · ML Engineer · Data Scientist · SWE

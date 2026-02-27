@@ -1,4 +1,70 @@
-// ── Parsers ────────────────────────────────────────────────────────
+// ── Tech icon map (Devicon) ────────────────────────────────────────
+const TECH_ICONS = {
+    'python':           'devicon-python-plain',
+    'fastapi':          'devicon-fastapi-plain',
+    'postgresql':       'devicon-postgresql-plain',
+    'postgres':         'devicon-postgresql-plain',
+    'redis':            'devicon-redis-plain',
+    'react':            'devicon-react-original',
+    'react 19':         'devicon-react-original',
+    'next.js':          'devicon-nextjs-plain',
+    'next.js 15':       'devicon-nextjs-plain',
+    'typescript':       'devicon-typescript-plain',
+    'tailwind css':     'devicon-tailwindcss-plain',
+    'tailwind':         'devicon-tailwindcss-plain',
+    'docker':           'devicon-docker-plain',
+    'kubernetes':       'devicon-kubernetes-plain',
+    'gcp':              'devicon-googlecloud-plain',
+    'github actions':   'devicon-github-original',
+    'git':              'devicon-git-plain',
+    'pytorch':          'devicon-pytorch-plain',
+    'tensorflow':       'devicon-tensorflow-original',
+    'keras':            'devicon-keras-plain',
+    'pandas':           'devicon-pandas-plain',
+    'numpy':            'devicon-numpy-plain',
+    'scikit-learn':     'devicon-scikitlearn-plain',
+    'javascript':       'devicon-javascript-plain',
+    'js':               'devicon-javascript-plain',
+    'html':             'devicon-html5-plain',
+    'css':              'devicon-css3-plain',
+    'streamlit':        'devicon-streamlit-plain',
+    'flask':            'devicon-flask-original',
+    'mongodb':          'devicon-mongodb-plain',
+    'mysql':            'devicon-mysql-plain',
+    'sqlite':           'devicon-sqlite-plain',
+    'firebase':         'devicon-firebase-plain',
+    'figma':            'devicon-figma-plain',
+    'linux':            'devicon-linux-plain',
+    'bash':             'devicon-bash-plain',
+    'r':                'devicon-r-plain',
+    'java':             'devicon-java-plain',
+    'go':               'devicon-go-plain',
+    'rust':             'devicon-rust-plain',
+    'azure':            'devicon-azure-plain',
+    'aws':              'devicon-amazonwebservices-plain-wordmark',
+    'graphql':          'devicon-graphql-plain',
+    'jupyter':          'devicon-jupyter-plain',
+    'vscode':           'devicon-vscode-plain',
+    'vim':              'devicon-vim-plain',
+    'nginx':            'devicon-nginx-plain',
+    'apache':           'devicon-apache-plain',
+    'airflow':          'devicon-apacheairflow-plain',
+    'apache airflow':   'devicon-apacheairflow-plain',
+    'selenium':         'devicon-selenium-original',
+    'opencv':           'devicon-opencv-plain',
+    'chrome':           'devicon-chrome-plain',
+    'latex':            'devicon-latex-original',
+    'mlflow':           'devicon-mlflow-plain',
+    'matplotlib':       'devicon-matplotlib-plain',
+};
+
+function techIcon(name) {
+    const key = name.toLowerCase().trim();
+    const cls = TECH_ICONS[key];
+    return cls ? `<i class="${cls} tech-icon"></i>` : '';
+}
+
+
 function parseAbout(text) {
     const get = k => { const m = text.match(new RegExp(`^${k}:\\s*(.+)`,'m')); return m ? m[1].trim() : ''; };
     const bioMatch = text.match(/^BIO:\n([\s\S]*?)(?=\n[A-Z_]+:|\s*$)/m);
@@ -29,7 +95,7 @@ function parseExperience(text) {
     const blocks = text.split(/\n---+\n/).map(b=>b.trim()).filter(Boolean);
     return `<div class="cards-stack">${blocks.map(block => {
         const get = k => { const m = block.match(new RegExp(`^${k}:\\s*(.+)`,'m')); return m ? m[1].trim() : ''; };
-        const bullets = [...block.matchAll(/^- (.+)/gm)].map(m=>`<li>${m[1]}</li>`).join('');
+        const bullets = [...block.matchAll(/^\s*- (.+)/gm)].map(m=>`<li>${m[1]}</li>`).join('');
         return `<div class="card">
             <div class="card-label">${get('DURATION')} · ${get('LOCATION')}</div>
             <h3>${get('COMPANY')}</h3>
@@ -47,7 +113,7 @@ function parseProjects(text) {
         const tag = get('TAG').toLowerCase();
         const statusClass = tag.includes('live') || tag.includes('prod') ? 'live' : '';
         const statusLabel = tag.includes('live') ? 'Live' : tag.includes('prod') ? 'Deployed' : 'Open Source';
-        const stack = get('STACK').split('·').map(s=>`<span class="tag">${s.trim()}</span>`).join('');
+        const stack = get('STACK').split('·').map(s=>`<span class="tag">${techIcon(s)}${s.trim()}</span>`).join('');
         return `<div class="project-card">
             <div class="project-card-top">
                 <h3>${get('FILE') || get('NAME')}</h3>
@@ -68,7 +134,7 @@ function parseSkills(text) {
     const blocks = text.split(/\n---+\n/).map(b=>b.trim()).filter(Boolean);
     const cards = blocks.map(block => {
         const get = k => { const m = block.match(new RegExp(`^${k}:\\s*(.+)`,'m')); return m ? m[1].trim() : ''; };
-        const items = get('ITEMS').split(',').map(i=>`<span>${i.trim()}</span>`).join('');
+        const items = get('ITEMS').split(',').map(i=>`<span>${techIcon(i)}${i.trim()}</span>`).join('');
         return `<div class="skill-card">
             <div class="skill-card-title">${get('CATEGORY')}</div>
             <div class="skill-items">${items}</div>

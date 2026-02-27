@@ -12,7 +12,7 @@ NAME: AI CodeBugger
 TAG: GITHUB
 STACK: FastAPI · Next.js 15 · React 19 · TypeScript · Tailwind CSS · Streamlit · LangChain · GPT-4 · ChromaDB · Firestore · GCP · Docker · Kubernetes
 GITHUB: https://github.com/Regata3010/AI-CodeBugger
-DESC: Enterprise-grade AI code review platform. Supports single files, ZIP projects, and direct GitHub repo analysis. Runs 5 analysis types — bug detection, optimization, test generation, edge cases, documentation — in under 30 seconds.
+DESC: Full-stack AI code review platform deployed on GCP. Accepts single Python files, ZIP projects, or public GitHub repo URLs and runs 5 analysis modes — bug detection, performance optimization, documentation generation, unit test generation, and edge case discovery — in under 30 seconds. Backend: FastAPI with async multi-threading. Frontend: Next.js 15 + React 19 + TypeScript. AI layer: GPT-4 via LangChain with dynamic prompt chaining. Persistent chat assistant with context-aware memory stored in Firestore. API keys encrypted with SealedSecrets. Containerized with Docker, orchestrated on GKE.
 
 ---
 

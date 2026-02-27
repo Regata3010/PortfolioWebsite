@@ -46,6 +46,6 @@ Then open [http://127.0.0.1:8080](http://127.0.0.1:8080).
 
 ## Deployment
 
-Deployed via [Netlify](https://netlify.com) with a custom domain at **aravpandey.me**.
+Deployed via **GitHub Pages** at **[aravpandey.me](https://aravpandey.me)**.
 
-No build step needed — set publish directory to `/` and deploy.
+No build step needed. To redeploy, just push to `main` — GitHub Pages picks up changes automatically within ~60 seconds.
