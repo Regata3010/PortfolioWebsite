@@ -27,6 +27,14 @@ DESC: End-to-end NLP pipeline that analyzes restaurant reviews and generates con
 
 ---
 
+NAME: MLOps Engineering
+TAG: MLOPS · CONTAINERIZATION · DOCKER · DOCKER COMPOSE · REST API · FASTAPI · STREAMLIT · CI/CD · GITHUB ACTIONS · AUTOMATED TESTING · PYTEST · UNITTEST · WORKFLOW ORCHESTRATION · APACHE AIRFLOW · DAG · INFRASTRUCTURE AS CODE · TERRAFORM · AWS · CLOUD PROVISIONING · DECISION TREE · RANDOM FOREST · IRIS CLASSIFICATION · BATCH INFERENCE · MODEL SERVING · MODEL PERSISTENCE · FEATURE ENGINEERING · DATA PIPELINE · FULL STACK ML
+STACK: Python · FastAPI · Streamlit · Scikit-learn · Decision Tree · Random Forest · Pydantic · Uvicorn · joblib · NumPy · Pandas · Docker · Docker Compose · Apache Airflow · GitHub Actions · pytest · unittest · Terraform · AWS S3 · AWS VPC · HCL
+GITHUB: https://github.com/Regata3010/MlOps-CW
+DESC: End-to-end MLOps coursework portfolio spanning 6 production-focused labs. The Docker lab containerizes a two-tier ML prediction service with a FastAPI backend and Streamlit frontend, orchestrated via Docker Compose and deployed to Docker Hub. The GitHub Actions lab implements dual CI/CD pipelines (pytest and unittest) that auto-trigger on push, upload XML test reports as artifacts, and notify on pass/fail. The FastAPI lab builds a production-grade Iris classification REST API using a Decision Tree, exposing /train, /predict, and /predict/batch endpoints with Pydantic validation and Swagger UI. The Streamlit lab pairs a Random Forest classifier (~95% accuracy) with an interactive dashboard for real-time Iris species prediction, with a live backend health indicator. The Apache Airflow lab orchestrates a 4-task ML pipeline DAG (load → process → train → evaluate) using XCom for inter-task data passing and a threshold-based deployment gate. The Terraform lab provisions and destroys AWS infrastructure (S3, VPC, Subnet) declaratively, demonstrating the full IaC lifecycle with state management and resource dependency resolution.
+
+---
+
 NAME: LA Crime Forecast
 TAG: MACHINE LEARNING · FORECASTING · NLP
 STACK: Python · Streamlit · XGBoost · TensorFlow · PyTorch · PyTorch Forecasting · Scikit-learn · Pandas · NLTK · Gensim (Word2Vec) · TextBlob · SHAP · PRAW · LangChain · Folium
