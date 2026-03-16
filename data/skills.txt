@@ -1,28 +1,28 @@
 CATEGORY: AI / LLMs
-ITEMS: LangChain, LangGraph, GPT-4, GPT-4o-mini, Claude AI, AIF360, BERT, DistilBERT, HuggingFace Transformers, Pinecone, ChromaDB, RAG, CAG, Prompt Engineering
+ITEMS: LangChain, LangGraph, GPT-4, GPT-4o-mini, Claude AI, AIF360, BERT, DistilBERT, HuggingFace Transformers, Pinecone, ChromaDB, RAG, CAG, Prompt Engineering, OpenAI GPT-4
 
 ---
 
 CATEGORY: Machine Learning
-ITEMS: Scikit-learn, XGBoost, PyTorch, TensorFlow, Keras, Random Forest, Logistic Regression, SHAP, Optuna, MLflow, DVC, SMOTE, GridSearchCV, Transfer Learning
+ITEMS: Scikit-learn, XGBoost, PyTorch, TensorFlow, Keras, Random Forest, Logistic Regression, SHAP, Optuna, MLflow, DVC, SMOTE, GridSearchCV, Transfer Learning, Decision Tree, K-Nearest Neighbors, Naive Bayes, Support Vector Machine, K-Means, Linear Regression, Polynomial Regression, Dropout, ANN, CNN, Backpropagation, SGD, Mini-Batch Gradient Descent, ARIMA, Elbow Method, Cross-Validation, YOLOv8, ResNet50, EfficientNet B0, MobileNet V2, ResNet18, Ultralytics
 
 ---
 
 CATEGORY: Data Science
-ITEMS: Pandas, NumPy, SQL, R, Matplotlib, Seaborn, Plotly, NLTK, spaCy, Gensim, TextBlob, Feature Engineering, EDA, ARIMA, Time Series
+ITEMS: Pandas, NumPy, SQL, R, Matplotlib, Seaborn, Plotly, NLTK, spaCy, Gensim, TextBlob, Feature Engineering, EDA, ARIMA, Time Series, Statsmodels, Folium, PRAW, Jupyter Notebook, SciPy, Pillow, tqdm, requests
 
 ---
 
 CATEGORY: Backend
-ITEMS: Python, FastAPI, PostgreSQL, Redis, OAuth 2.0, JWT, WebSockets, REST APIs, RBAC, C++, Go, Rust
+ITEMS: Python, FastAPI, PostgreSQL, Redis, OAuth 2.0, JWT, WebSockets, REST APIs, RBAC, C++, Go, Rust, Pydantic, Uvicorn, Joblib, Linear Discriminant Analysis, Slack API, Gmail API, Google Sheets API, Google Docs API, JSearch API, RapidAPI
 
 ---
 
 CATEGORY: Frontend
-ITEMS: React 19, Next.js 15, TypeScript, JavaScript, Tailwind CSS, Streamlit
+ITEMS: React 19, Next.js 15, TypeScript, JavaScript, Tailwind CSS, Streamlit, HTML, CSS, Pydantic
 
 ---
 
 CATEGORY: Cloud / DevOps / MLOps
-ITEMS: GCP, GKE, Docker, Kubernetes, GitHub Actions, CI/CD, Apache Airflow, CloudWatch, Firebase, Firestore, GCS, DVC, MLflow
+ITEMS: GCP, GKE, Docker, Kubernetes, GitHub Actions, CI/CD, Apache Airflow, CloudWatch, Firebase, Firestore, GCS, DVC, MLflow, AWS S3, AWS VPC, Terraform, HCL, Docker Compose, PyTorch Forecasting, OpenCV, Albumentations, Torchvision, transformers, CUDA, Apple MPS, n8n, LaTeX, Webhooks, Pytest, unittest
 
