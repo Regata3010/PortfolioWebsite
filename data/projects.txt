@@ -59,3 +59,21 @@ STACK: Python · PyTorch · Keras · Scikit-learn · Pandas · NumPy · Matplotl
 GITHUB: https://github.com/Regata3010/MachineLearningBasics
 DESC: End-to-end machine learning practice repository organized across 6 domains. The Classical ML folder benchmarks 6 classification algorithms (Logistic Regression, Decision Tree, KNN, LDA, Naive Bayes, SVM) on the Iris dataset, runs regression on housing and synthetic datasets, performs K-Means clustering with the elbow method, builds Scikit-learn preprocessing pipelines, and conducts a 4-part progressive analysis of Amazon stock data covering EDA, feature engineering, and trend analysis. The Computer Vision folder builds and trains a custom PyTorch CNN from scratch, applies transfer learning to classify pizza/steak/sushi food images, and explores torchvision augmentation transforms including flipping, rotation, and color jitter. The Data Visualization folder creates interactive distribution and geographic plots with Plotly, produces Matplotlib charts, and analyzes customer loyalty segmentation and behavior with visual dashboards. The Deep Learning folder implements feedforward ANNs for classification and regression, manually derives backpropagation across 3 notebooks progressing to Keras, trains PyTorch models on synthetic blob and circle datasets with decision boundary plots, and compares SGD, full batch, and mini-batch gradient descent optimization strategies with dropout regularization and Keras hyperparameter tuning. The Time Series folder applies ARIMA forecasting to real-world time series data, covering stationarity testing, order selection (p,d,q), and forecast evaluation. The VariousModelsTraining folder covers KNN and Naive Bayes classifiers, data cleaning pipelines, and structured homework assignments applying ML models to real datasets.
 
+---
+
+NAME: CelebA-47 — Dual-Stage Celebrity Face Recognition & Detection System
+TAG: GITHUB
+STACK: Python · PyTorch · YOLOv8 · ResNet50 · EfficientNet B0 · MobileNet V2 · ResNet18 · OpenCV · Albumentations · Ultralytics · NumPy · Pandas · Matplotlib · Pillow · tqdm · scikit-learn · CUDA · Apple MPS · Jupyter Notebook
+GITHUB: https://github.com/Regata3010/celebrity-recognition-yolov8
+DESC: End-to-end deep learning pipeline for celebrity face recognition and detection built on the CelebA dataset. The project is split into two stages — Part 1 implements multi-model image classification across 47 celebrities using transfer learning (ResNet50, EfficientNet B0, MobileNet V2, ResNet18) and a custom SimpleCNN baseline, achieving 71.1% test accuracy with EfficientNet B0 and 83.3% accuracy for the target celebrity (ID 10173) with ResNet50. Part 2 extends the system into a real-time multi-celebrity object detection pipeline using a fine-tuned YOLOv8s model trained on synthetically generated concatenated images with YOLO-format bounding box annotations. The detection model achieves 88.0% mAP@0.5 overall and a near-perfect 99.5% mAP with 100% recall for the target celebrity. A smart data strategy ensures Celebrity 10173 appears in 70% of training images, combined with augmentations including mosaic, mixup, random flipping, brightness variation, and rotation to maximise generalisation from limited data.
+
+---
+
+NAME: Text-to-Image Diffusion on Flickr8k
+TAG: GITHUB
+STACK: Python · PyTorch · torchvision · transformers (CLIP) · Pillow · NumPy · Pandas · Matplotlib · tqdm · SciPy · requests · scikit-learn · CUDA (optional) · Apple MPS (optional) · Jupyter Notebook
+GITHUB: https://github.com/Regata3010/text2image-diffusion-flickr8k
+SUMMARY: A working text-to-image diffusion model trained on Flickr8k in <1 hour (~$3 on cloud GPU) with CLIP ViT-B/32 text conditioning. Includes comprehensive analysis: classifier-free guidance (CFG) sweeps across 1.0–20.0, noise schedule comparisons, quantitative metrics (CLIP Score, Inception Score, FID), and live demo for real-time generation + evaluation. Proves advanced generative AI is accessible without massive compute budgets. Complete pipeline: training, generation, metric calculation, and presentation-ready upscaling.
+
+
+
