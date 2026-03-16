@@ -76,4 +76,3 @@ GITHUB: https://github.com/Regata3010/text2image-diffusion-flickr8k
 DESC: A production-ready text-to-image diffusion engine trained entirely on university GPU access—no cloud costs, no massive budgets. Achieves high-quality image generation with CLIP ViT-B/32 semantic guidance and systematic CFG experimentation (1.0–20.0 range). Includes discovery of metric inflation at extreme CFG values, noise schedule optimization, and real-time generation and evaluation pipeline. Demonstrates that frontier generative AI isn't locked behind corporate infrastructure: with smart engineering and rigorous parameter sweeps, you can build competitive models on campus hardware. Complete toolkit: training, CFG comparisons, quantitative metrics (CLIP/Inception/FID), interactive demos, and publication-ready upscaling.
 
 
-
