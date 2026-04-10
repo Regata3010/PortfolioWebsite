@@ -1,5 +1,5 @@
 // ── Tech icon map (Devicon) ────────────────────────────────────────
-const ASSET_VERSION = '20260410';
+const ASSET_VERSION = '20260410-oss3';
 
 const TECH_ICONS = {
     'python':           'devicon-python-plain',
@@ -66,6 +66,15 @@ function techIcon(name) {
     return cls ? `<i class="${cls} tech-icon"></i>` : '';
 }
 
+function escapeHtml(text) {
+    return String(text ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 function extractField(block, key) {
     const lines = block.split('\n');
     const startIndex = lines.findIndex(line => line.startsWith(`${key}:`));
@@ -74,7 +83,7 @@ function extractField(block, key) {
     const values = [lines[startIndex].slice(key.length + 1).trim()];
     for (let i = startIndex + 1; i < lines.length; i++) {
         const line = lines[i];
-        if (/^[A-Z_]+:\s*/.test(line) || /^---+\s*$/.test(line)) break;
+        if (/^[A-Z_]+:\s*/.test(line) || /^---+\s*$/.test(line) || /^\s*[-•→]\s+/.test(line)) break;
         values.push(line.trim());
     }
 
@@ -147,6 +156,113 @@ function parseProjects(text) {
     return `<div class="project-grid">${cards.join('')}</div>`;
 }
 
+function renderOpenSourceBlock(block) {
+    const trimmed = block.trim();
+    if (!trimmed) return '';
+    if (/^[-—]{3,}$/.test(trimmed)) return '<div class="oss-divider"></div>';
+
+    const lines = block.split('\n');
+    const trimmedLines = lines.map(line => line.trim()).filter(Boolean);
+    const isTimeline = lines.length > 1 && lines.every(line => /^\d{4}-\d{2}-\d{2}\s+/.test(line.trim()));
+    if (isTimeline) {
+        return `<ul class="oss-list oss-timeline">${lines.map(line => {
+            const match = line.trim().match(/^(\d{4}-\d{2}-\d{2})\s+(.+)$/);
+            if (!match) return `<li>${escapeHtml(line.trim())}</li>`;
+            return `<li><span class="oss-date">${escapeHtml(match[1])}</span><span>${escapeHtml(match[2])}</span></li>`;
+        }).join('')}</ul>`;
+    }
+
+    const isHeading = /^\d+\)\s+/.test(trimmed)
+        || /^(BEFORE|AFTER|INITIALIZATION CODE|CODE BEFORE AND AFTER)\b/.test(trimmed)
+        || /^[A-Z][A-Z0-9 /→&()\-]+$/.test(trimmed);
+    if (trimmedLines.length === 2 && isHeading && /^[-—]{3,}$/.test(trimmedLines[1])) {
+        return `
+            <div class="oss-heading-block">
+                <h3 class="oss-heading">${escapeHtml(trimmedLines[0])}</h3>
+                <div class="oss-divider"></div>
+            </div>`;
+    }
+    if (isHeading) return `<h3 class="oss-heading">${escapeHtml(trimmed)}</h3>`;
+
+    const bulletStart = lines.findIndex(line => /^[-•→]\s+/.test(line.trim()));
+    const hasBulletList = bulletStart >= 0 && lines.slice(bulletStart).every(line => {
+        const t = line.trim();
+        return !t || /^[-•→]\s+/.test(t);
+    });
+    if (hasBulletList) {
+        const intro = lines.slice(0, bulletStart).map(line => line.trim()).filter(Boolean).join(' ');
+        const items = lines.slice(bulletStart).map(line => line.trim()).filter(Boolean).map(line => line.replace(/^[-•→]\s+/, ''));
+        return `
+            <div class="oss-list-block">
+                ${intro ? `<p class="oss-paragraph">${escapeHtml(intro)}</p>` : ''}
+                <ul class="oss-list">${items.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+            </div>`;
+    }
+
+    const isCode = lines.length > 1 && lines.some(line => /^\s{4,}/.test(line));
+    if (isCode) {
+        return `<pre class="oss-code"><code>${escapeHtml(block.replace(/\s+$/, ''))}</code></pre>`;
+    }
+
+    return `<p class="oss-paragraph">${escapeHtml(trimmed).replace(/\n+/g, ' ')}</p>`;
+}
+
+function renderOpenSourceBody(text) {
+    return text
+        .split(/\n\s*\n+/)
+        .filter(block => block.trim())
+        .map(renderOpenSourceBlock)
+        .join('');
+}
+
+function parseOpenSource(text) {
+    const lines = text.split('\n');
+    const getMeta = key => {
+        const line = lines.find(item => item.startsWith(`${key}:`));
+        return line ? line.slice(key.length + 1).trim() : '';
+    };
+    const titleLine = lines[0]?.trim() || 'Open Source Contribution';
+    const headline = titleLine.split(/\s+[—-]\s+/)[0].trim();
+    const subtitle = lines[1]?.trim() || '';
+    const bodyStart = lines.findIndex((line, index) => index > 10 && /^\d+\)\s+/.test(line.trim()));
+    const body = bodyStart >= 0 ? lines.slice(bodyStart).join('\n') : '';
+    const link = getMeta('Link');
+    const safeLink = /^https?:\/\//i.test(link) ? link : '';
+    const metaItems = [
+        { label: 'Repository', value: getMeta('Repository') },
+        { label: 'PR', value: getMeta('PR') },
+        { label: 'Issue', value: getMeta('Issue') },
+        { label: 'File', value: getMeta('File') },
+        { label: 'Change', value: getMeta('Change') },
+    ].filter(item => item.value);
+    const status = getMeta('Status');
+
+    return `
+        <div class="oss-card">
+            <div class="oss-card-top">
+                <div class="oss-card-heading">
+                    <span class="oss-kicker">Open Source Contribution</span>
+                    <h3 class="oss-title">${escapeHtml(headline)}</h3>
+                    <p class="oss-subtitle">${escapeHtml(subtitle)}</p>
+                </div>
+                ${status ? `<span class="oss-status">${escapeHtml(status)}</span>` : ''}
+            </div>
+            <div class="oss-meta-grid">
+                ${metaItems.map(item => `
+                    <div class="oss-meta-item">
+                        <span>${escapeHtml(item.label)}</span>
+                        <strong>${escapeHtml(item.value)}</strong>
+                    </div>
+                `).join('')}
+            </div>
+            ${safeLink ? `
+                <div class="oss-actions">
+                    <a href="${escapeHtml(safeLink)}" target="_blank" rel="noopener noreferrer" class="oss-action-link">↗ View PR</a>
+                </div>` : ''}
+            <div class="oss-body">${renderOpenSourceBody(body)}</div>
+        </div>`;
+}
+
 function parseSkills(text) {
     const blocks = text.split(/\n---+\n/).map(b=>b.trim()).filter(Boolean);
     const cards = blocks.map(block => {
@@ -206,8 +322,9 @@ const SECTIONS = [
     { id:'education',  num:'02', label:'Education',  parser:parseEducation },
     { id:'experience', num:'03', label:'Experience', parser:parseExperience },
     { id:'projects',   num:'04', label:'Projects',   parser:parseProjects },
-    { id:'skills',     num:'05', label:'Skills',     parser:parseSkills },
-    { id:'contact',    num:'06', label:'Contact',    parser:parseContact },
+    { id:'opensource', num:'05', label:'Open Source Contributions', parser:parseOpenSource },
+    { id:'skills',     num:'06', label:'Skills',     parser:parseSkills },
+    { id:'contact',    num:'07', label:'Contact',    parser:parseContact },
 ];
 
 // ── Load all sections on boot ──────────────────────────────────────

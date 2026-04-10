@@ -1,0 +1,176 @@
+HUGGINGFACE TRANSFORMERS PR #45320 — MERGED
+Fix AssistantToTargetTranslator crash with cross-vocab models
+
+
+Repository:  huggingface/transformers (130K+ stars)
+PR:          #45320
+Link:        https://github.com/huggingface/transformers/pull/45320
+Issue:       #45307
+Status:      MERGED
+File:        src/transformers/generation/candidate_generator.py
+Change:      1 line + 4 line comment
+
+
+
+1) HOW I ENCOUNTERED THE BUG
+
+
+During benchmarking of our from-scratch speculative decoding implementation,
+we compared our decoder against HuggingFace's built-in assisted generation
+(model.generate with assistant_model). We tested across two model families:
+
+  Llama pair:  Llama-3.1-8B (target) + Llama-3.2-1B (draft)
+    → Same vocab size (128,256 tokens). HF assisted generation worked fine.
+
+  Qwen pair:   Qwen2.5-7B (target) + Qwen2.5-0.5B (draft)
+    → Different vocab sizes (152,064 vs 151,936). HF assisted generation CRASHED.
+
+The crash occurred during the warmup phase of our benchmark runner when
+the HFAssistedDecoder called model.generate(assistant_model=draft_model).
+
+First attempt: calling without explicit tokenizers raised:
+  ValueError: "The main and assistant models have different tokenizers."
+
+Second attempt: passing tokenizer= and assistant_tokenizer= raised:
+  AttributeError: 'AssistantToTargetTranslator' object has no attribute
+  'map_input_embeddings'
+
+We worked around this in our project by wrapping the call in try/except
+(src/hf_assisted_decoder.py) to keep benchmarks running. The bug was
+logged as Error #4 in our DEBUG_LOG.txt on 2026-03-30.
+
+
+
+2) CONTEXT → DIAGNOSIS → FIX
+
+
+CONTEXT
+-------
+HuggingFace's assisted generation supports cross-tokenizer model pairs
+through the AssistantToTargetTranslator class (candidate_generator.py).
+When the draft and target models have different vocabularies, this class
+handles the translation between vocab spaces.
+
+Part of this translation involves pruning the draft model's language model
+head to only output tokens that exist in the target vocab, and mapping
+input embeddings accordingly. This is done via _MapInputEmbedding and
+_PruneReindexingLMHead objects.
+
+The setup logic in __init__ (lines 720-744) has TWO conditions that
+must be true for map_input_embeddings to be created:
+
+  1. len(self._suppress_input_ids) > 0
+     (the assistant has tokens not in the target vocab)
+
+  2. self.assistant_prune_lm_head and assistant_model is not None
+     (pruning is enabled)
+
+Only when BOTH conditions are true does self.map_input_embeddings get
+assigned (line 740).
+
+
+DIAGNOSIS
+---------
+The unmap_input_ids() method (line 746) only checked ONE of the two
+conditions:
+
+  if self.assistant_prune_lm_head:          ← only checks condition 2
+      self.map_input_embeddings.map = False  ← crashes if condition 1 was false
+
+When models share the same tokenizer base but have different vocab sizes
+due to padding (Qwen2.5-7B has 152,064 tokens, Qwen2.5-0.5B has 151,936),
+the _suppress_input_ids list may be empty (the smaller vocab IS a subset
+of the larger). In this case:
+
+  - Condition 1 is FALSE → map_input_embeddings is never created
+  - Condition 2 is TRUE → assistant_prune_lm_head was set
+  - unmap_input_ids() checks only condition 2, enters the block,
+    and crashes accessing the non-existent attribute
+
+The root cause: a missing guard that should mirror the initialization
+condition.
+
+
+FIX
+---
+Added the same len(self._suppress_input_ids) > 0 check to match the
+initialization guard at line 723.
+
+
+
+3) CODE BEFORE AND AFTER
+
+
+BEFORE (line 753-754):
+------
+    def unmap_input_ids(self):
+        """
+        Disables the mapping of input ids despite the assistant pruning
+        for the language model head being enabled.
+        ...
+        """
+        if self.assistant_prune_lm_head:
+            self.map_input_embeddings.map = False
+
+
+AFTER (line 753-758):
+-----
+    def unmap_input_ids(self):
+        """
+        Disables the mapping of input ids despite the assistant pruning
+        for the language model head being enabled.
+        ...
+        """
+        # map_input_embeddings is only initialized when _suppress_input_ids is non-empty
+        # (i.e., the assistant vocab is not a strict subset of the target vocab, such as
+        # when models share the same tokenizer but have different vocab sizes due to padding,
+        # e.g., Qwen2.5-7B (152064) + Qwen2.5-0.5B (151936))
+        if self.assistant_prune_lm_head and len(self._suppress_input_ids) > 0:
+            self.map_input_embeddings.map = False
+
+
+INITIALIZATION CODE (lines 722-740, unchanged — for reference):
+-----
+    self.assistant_prune_lm_head = assistant_prune_lm_head and assistant_model is not None
+    if len(self._suppress_input_ids) > 0:                          ← condition 1
+        if self.assistant_prune_lm_head and assistant_model is not None:  ← condition 2
+            ...
+            map_input_embeddings = _MapInputEmbedding(...)
+            assistant_model.set_input_embeddings(map_input_embeddings)
+            self.map_input_embeddings = map_input_embeddings        ← only set here
+
+
+
+4) TIMELINE
+
+
+2026-03-30  Bug encountered during Qwen benchmark run (Error #4 in DEBUG_LOG)
+2026-03-30  Workaround implemented (try/except in hf_assisted_decoder.py)
+2026-04-07  Issue #45307 filed on huggingface/transformers
+2026-04-07  Maintainer responded, confirmed diagnosis, suggested fix approach
+2026-04-10  PR #45320 submitted with fix + comment
+2026-04-10  Maintainer requested explanatory comment on the guard
+2026-04-10  Comment added, trailing whitespace cleaned
+2026-04-10  PR #45320 MERGED
+
+
+
+5) AFFECTED MODELS
+
+
+Any model pair where:
+  - Draft and target share the same tokenizer family
+  - But have different vocab sizes (due to padding or truncation)
+  - And assistant_prune_lm_head is enabled (default behavior)
+
+Known affected pairs:
+  - Qwen2.5-7B + Qwen2.5-0.5B (152,064 vs 151,936)
+  - Qwen2.5-7B + Qwen2.5-1.5B (152,064 vs 151,936)
+  - Qwen2.5-72B + Qwen2.5-7B (152,064 vs 152,064 — NOT affected, same size)
+
+Not affected:
+  - Llama-3.1-8B + Llama-3.2-1B (same vocab size: 128,256)
+  - Any pair where both models have identical vocab sizes
+
+
+END
