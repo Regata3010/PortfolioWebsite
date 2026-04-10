@@ -1,3 +1,34 @@
+NAME: SpecBench
+TAG: GITHUB
+STACK: PyTorch · HuggingFace Transformers · bitsandbytes · CUDA · 
+Python · SLURM · Qwen2.5 · Llama-3.1 · NVIDIA H200 · NVIDIA A100
+GITHUB: https://github.com/Regata3010/speculative-decoding
+DESC: From-scratch speculative decoding engine benchmarked across 
+13 quantization-K configurations on 72B+ models; systematic study 
+identified K-dependent crossover between INT4 and FP16 draft 
+optimality — achieving 3.30x average throughput on Qwen-72B 
+(FP16 draft, INT8 target, K=15) with per-phase profiling showing 
+draft model as structural bottleneck on small targets. Validated 
+lossless output via chi-squared testing across 52 automated tests.
+
+---
+
+NAME: Mnemosyne
+TAG: GITHUB
+STACK: FastAPI · PostgreSQL · pgvector · Redis · Python · 
+sentence-transformers · spaCy · VADER · LangChain · bitsandbytes · 
+Docker · pytest
+GITHUB: https://github.com/Regata3010/Mnemosyne
+DESC: Production agent memory lifecycle system with importance-based 
+ingestion filtering, task-aware retrieval, and concurrent write 
+safety; achieved 2.5x retrieval precision improvement over Zep and 
+LangChain on adversarial noise-injected benchmark, 6.8x latency 
+advantage at 100k memories (16.2ms vs 110.1ms Zep p99), and 
+0.400ms write-decision latency — validated via 50-agent adversarial 
+concurrency test with zero silent drops across 110 automated tests.
+
+---
+
 NAME: BiasGuard — Enterprise AI Fairness Monitoring Platform
 TAG: GITHUB
 STACK: FastAPI · React 19 · TypeScript · LangGraph · GPT-4o-mini · AIF360 · Pinecone · PostgreSQL · Redis · GKE · Docker · Kubernetes · MLflow · ReportLab · Matplotlib · Slack API · WebSocket · OAuth 2.0 · JWT · RBAC · GitHub Actions · CI/CD · LangChain · Python
@@ -75,4 +106,13 @@ STACK: Python · PyTorch · torchvision · transformers (CLIP) · Pillow · NumP
 GITHUB: https://github.com/Regata3010/text2image-diffusion-flickr8k
 DESC: A production-ready text-to-image diffusion engine trained entirely on university GPU access—no cloud costs, no massive budgets. Achieves high-quality image generation with CLIP ViT-B/32 semantic guidance and systematic CFG experimentation (1.0–20.0 range). Includes discovery of metric inflation at extreme CFG values, noise schedule optimization, and real-time generation and evaluation pipeline. Demonstrates that frontier generative AI isn't locked behind corporate infrastructure: with smart engineering and rigorous parameter sweeps, you can build competitive models on campus hardware. Complete toolkit: training, CFG comparisons, quantitative metrics (CLIP/Inception/FID), interactive demos, and publication-ready upscaling.
 
+---
+
+NAME: Securing Smart Homes Using Face Recognition
+FILE: SmartHome-FaceRec
+TAG: RESEARCH · IOT · MACHINE LEARNING
+STACK: Python · Machine Learning · Face Recognition · OpenCV · IoT · Raspberry Pi · Motion Sensor · Fingerprint Biometrics · Servo Motor · Real-time Processing
+GITHUB:
+DEMO:
+DESC: Published 2021 research paper on an IoT-based smart door security system leveraging face recognition with machine learning algorithms to replace traditional key-based locks. Built adaptive ML model achieving 99%+ accuracy across varying conditions (glasses, masks, angle variations) while continuously retraining on recognized faces to improve over time. Integrated multi-layered hardware architecture combining Raspberry Pi, servo motor, motion sensor, fingerprint sensor, and high-resolution camera for real-time intruder detection and remote admin notifications. Developed biometric redundancy pipeline with fingerprint sensor backup for low-light scenarios, ensuring system reliability while maintaining cost-effectiveness and accessibility for middle-income households.
 
