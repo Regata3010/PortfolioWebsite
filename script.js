@@ -1,5 +1,5 @@
 // ── Tech icon map (Devicon) ────────────────────────────────────────
-const ASSET_VERSION = '20260410-oss3';
+const ASSET_VERSION = '20260410-oss5';
 
 const TECH_ICONS = {
     'python':           'devicon-python-plain',
@@ -73,6 +73,12 @@ function escapeHtml(text) {
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;');
+}
+
+function toTitleCase(text) {
+    return String(text ?? '')
+        .toLowerCase()
+        .replace(/\b[a-z]/g, char => char.toUpperCase());
 }
 
 function extractField(block, key) {
@@ -172,16 +178,36 @@ function renderOpenSourceBlock(block) {
         }).join('')}</ul>`;
     }
 
-    const isHeading = /^\d+\)\s+/.test(trimmed)
-        || /^(BEFORE|AFTER|INITIALIZATION CODE|CODE BEFORE AND AFTER)\b/.test(trimmed)
-        || /^[A-Z][A-Z0-9 /→&()\-]+$/.test(trimmed);
-    if (trimmedLines.length === 2 && isHeading && /^[-—]{3,}$/.test(trimmedLines[1])) {
+    const codeHeaderMatch = trimmedLines.length >= 2
+        ? trimmedLines[0].match(/^(BEFORE|AFTER|INITIALIZATION CODE)\s*(?:\(([^)]*)\))?:$/i)
+        : null;
+    if (codeHeaderMatch && /^[-—]{3,}$/.test(trimmedLines[1])) {
+        const [, label, meta] = codeHeaderMatch;
+        const codeBody = lines
+            .slice(2)
+            .join('\n')
+            .replace(/^\s*\n+/, '')
+            .replace(/\s+$/, '');
         return `
-            <div class="oss-heading-block">
-                <h3 class="oss-heading">${escapeHtml(trimmedLines[0])}</h3>
-                <div class="oss-divider"></div>
-            </div>`;
+            <div class="oss-code-block">
+                <div class="oss-code-header">
+                    <span class="oss-code-chip">${escapeHtml(toTitleCase(label))}</span>
+                    ${meta ? `<span class="oss-code-meta">${escapeHtml(meta)}</span>` : ''}
+                </div>
+                ${codeBody
+                    ? `<pre class="oss-code"><code>${escapeHtml(codeBody)}</code></pre>`
+                    : '<div class="oss-divider"></div>'}
+            </div>
+        `;
     }
+
+    const sectionMatch = trimmed.match(/^\d+\)\s+(.+)$/);
+    if (sectionMatch && /^CODE BEFORE AND AFTER$/i.test(sectionMatch[1].trim())) {
+        return `<h3 class="oss-code-section-title">${escapeHtml(toTitleCase(sectionMatch[1].trim()))}</h3>`;
+    }
+
+    const isHeading = /^\d+\)\s+/.test(trimmed)
+        || /^[A-Z][A-Z0-9 /→&()\-]+$/.test(trimmed);
     if (isHeading) return `<h3 class="oss-heading">${escapeHtml(trimmed)}</h3>`;
 
     const bulletStart = lines.findIndex(line => /^[-•→]\s+/.test(line.trim()));
