@@ -1,4 +1,6 @@
 // ── Tech icon map (Devicon) ────────────────────────────────────────
+const ASSET_VERSION = '20260410';
+
 const TECH_ICONS = {
     'python':           'devicon-python-plain',
     'fastapi':          'devicon-fastapi-plain',
@@ -214,7 +216,7 @@ async function loadAllSections() {
     for (const s of SECTIONS) {
         let inner = '';
         try {
-            const res = await fetch(`data/${s.id}.txt`);
+            const res = await fetch(`data/${s.id}.txt?v=${ASSET_VERSION}`);
             inner = s.parser(await res.text());
         } catch(e) {
             inner = `<p style="color:var(--text-muted)">Could not load ${s.id}.txt</p>`;
