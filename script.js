@@ -64,9 +64,24 @@ function techIcon(name) {
     return cls ? `<i class="${cls} tech-icon"></i>` : '';
 }
 
+function extractField(block, key) {
+    const lines = block.split('\n');
+    const startIndex = lines.findIndex(line => line.startsWith(`${key}:`));
+    if (startIndex === -1) return '';
+
+    const values = [lines[startIndex].slice(key.length + 1).trim()];
+    for (let i = startIndex + 1; i < lines.length; i++) {
+        const line = lines[i];
+        if (/^[A-Z_]+:\s*/.test(line) || /^---+\s*$/.test(line)) break;
+        values.push(line.trim());
+    }
+
+    return values.join(' ').replace(/\s+/g, ' ').trim();
+}
+
 
 function parseAbout(text) {
-    const get = k => { const m = text.match(new RegExp(`^${k}:\\s*(.+)`,'m')); return m ? m[1].trim() : ''; };
+    const get = k => extractField(text, k);
     const bioMatch = text.match(/^BIO:\n([\s\S]*?)(?=\n[A-Z_]+:|\s*$)/m);
     const bio = bioMatch ? bioMatch[1].trim() : '';
     return `
@@ -81,7 +96,7 @@ function parseAbout(text) {
 function parseEducation(text) {
     const blocks = text.split(/\n---+\n/).map(b=>b.trim()).filter(Boolean);
     return `<div class="cards-stack">${blocks.map(block => {
-        const get = k => { const m = block.match(new RegExp(`^${k}:\\s*(.+)`,'m')); return m ? m[1].trim() : ''; };
+        const get = k => extractField(block, k);
         return `<div class="card">
             <div class="card-label">${get('YEARS')}</div>
             <h3>${get('SCHOOL')}</h3>
@@ -94,7 +109,7 @@ function parseEducation(text) {
 function parseExperience(text) {
     const blocks = text.split(/\n---+\n/).map(b=>b.trim()).filter(Boolean);
     return `<div class="cards-stack">${blocks.map(block => {
-        const get = k => { const m = block.match(new RegExp(`^${k}:\\s*(.+)`,'m')); return m ? m[1].trim() : ''; };
+        const get = k => extractField(block, k);
         const bullets = [...block.matchAll(/^\s*- (.+)/gm)].map(m=>`<li>${m[1]}</li>`).join('');
         return `<div class="card">
             <div class="card-label">${get('DURATION')} · ${get('LOCATION')}</div>
@@ -108,12 +123,12 @@ function parseExperience(text) {
 function parseProjects(text) {
     const blocks = text.split(/\n---+\n/).map(b=>b.trim()).filter(Boolean);
     const cards = blocks.map(block => {
-        const get = k => { const m = block.match(new RegExp(`^${k}:\\s*(.*)`,'m')); return m ? m[1].trim() : ''; };
+        const get = k => extractField(block, k);
         const github = get('GITHUB'), demo = get('DEMO');
         const tag = get('TAG').toLowerCase();
         const statusClass = tag.includes('live') || tag.includes('prod') ? 'live' : '';
         const statusLabel = tag.includes('live') ? 'Live' : tag.includes('prod') ? 'Deployed' : 'Open Source';
-        const stack = get('STACK').split('·').map(s=>`<span class="tag">${techIcon(s)}${s.trim()}</span>`).join('');
+        const stack = get('STACK').split('·').map(s=>s.trim()).filter(Boolean).map(s=>`<span class="tag">${techIcon(s)}${s}</span>`).join('');
         return `<div class="project-card">
             <div class="project-card-top">
                 <h3>${get('FILE') || get('NAME')}</h3>
@@ -133,8 +148,8 @@ function parseProjects(text) {
 function parseSkills(text) {
     const blocks = text.split(/\n---+\n/).map(b=>b.trim()).filter(Boolean);
     const cards = blocks.map(block => {
-        const get = k => { const m = block.match(new RegExp(`^${k}:\\s*(.+)`,'m')); return m ? m[1].trim() : ''; };
-        const items = get('ITEMS').split(',').map(i=>`<span>${techIcon(i)}${i.trim()}</span>`).join('');
+        const get = k => extractField(block, k);
+        const items = get('ITEMS').split(',').map(i=>i.trim()).filter(Boolean).map(i=>`<span>${techIcon(i)}${i}</span>`).join('');
         return `<div class="skill-card">
             <div class="skill-card-title">${get('CATEGORY')}</div>
             <div class="skill-items">${items}</div>
@@ -144,7 +159,7 @@ function parseSkills(text) {
 }
 
 function parseContact(text) {
-    const get = k => { const m = text.match(new RegExp(`^${k}:\\s*(.+)`,'m')); return m ? m[1].trim() : ''; };
+    const get = k => extractField(text, k);
     const email=get('EMAIL'), github=get('GITHUB'), linkedin=get('LINKEDIN'), phone=get('CONTACT');
     return `<div class="contact-grid">
         <a href="mailto:${email}" class="contact-link">
