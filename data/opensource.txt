@@ -8,7 +8,6 @@ Link:        https://github.com/huggingface/transformers/pull/45320
 Issue:       #45307
 Status:      MERGED
 File:        src/transformers/generation/candidate_generator.py
-Change:      1 line + 4 line comment
 
 
 
