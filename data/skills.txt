@@ -1,10 +1,10 @@
 CATEGORY: AI / LLMs
-ITEMS: LangChain, LangGraph, GPT-4, GPT-4o-mini, Claude AI, AIF360, BERT, BERT (bert-base-uncased), DistilBERT, DistilBERT (SST-2), HuggingFace Transformers, transformers (CLIP), Pinecone, ChromaDB, RAG, CAG, Prompt Engineering, OpenAI GPT-4
+ITEMS: LangChain, LangGraph, GPT-4, GPT-4o-mini, Claude AI, AIF360, BERT, BERT (bert-base-uncased), DistilBERT, DistilBERT (SST-2), HuggingFace Transformers, transformers (CLIP), Pinecone, ChromaDB, RAG, CAG, Prompt Engineering, OpenAI GPT-4, Qwen2.5, Llama-3.1, Assisted Generation, Speculative Decoding, Model Generation, Token Mapping, Language Model Optimization, sentence-transformers, VADER
 
 ---
 
 CATEGORY: Machine Learning
-ITEMS: Scikit-learn, scikit-learn, XGBoost, PyTorch, TensorFlow, Keras, Random Forest, Logistic Regression, SHAP, Optuna, MLflow, DVC, SMOTE, GridSearchCV, Transfer Learning, Decision Tree, K-Nearest Neighbors, Naive Bayes, Support Vector Machine, K-Means, Linear Regression, Polynomial Regression, Dropout, ANN, CNN, Backpropagation, SGD, Mini-Batch Gradient Descent, ARIMA, Elbow Method, Cross-Validation, YOLOv8, ResNet50, EfficientNet B0, MobileNet V2, ResNet18, Ultralytics, Machine Learning
+ITEMS: Scikit-learn, scikit-learn, XGBoost, PyTorch, TensorFlow, Keras, Random Forest, Logistic Regression, SHAP, Optuna, MLflow, DVC, SMOTE, GridSearchCV, Transfer Learning, Decision Tree, K-Nearest Neighbors, Naive Bayes, Support Vector Machine, K-Means, Linear Regression, Polynomial Regression, Dropout, ANN, CNN, Backpropagation, SGD, Mini-Batch Gradient Descent, ARIMA, Elbow Method, Cross-Validation, YOLOv8, ResNet50, EfficientNet B0, MobileNet V2, ResNet18, Ultralytics, Machine Learning, Model Ensembling, Performance Profiling, Benchmarking
 
 ---
 
@@ -24,7 +24,7 @@ ITEMS: React 19, Next.js 15, TypeScript, JavaScript, Tailwind CSS, Streamlit, HT
 ---
 
 CATEGORY: Cloud / DevOps / MLOps
-ITEMS: GCP, GKE, GCP Cloud Run, GCP Artifact Registry, Docker, Kubernetes, GitHub Actions, CI/CD, Apache Airflow, CloudWatch, Firebase, Firestore, Firebase Firestore, GCS, DVC, MLflow, AWS S3, AWS VPC, Terraform, HCL, Docker Compose, PyTorch Forecasting, OpenCV, Albumentations, Torchvision, torchvision, transformers, CUDA, CUDA (optional), Apple MPS, Apple MPS (optional), n8n, LaTeX, Webhooks, Pytest, pytest, unittest
+ITEMS: GCP, GKE, GCP Cloud Run, GCP Artifact Registry, Docker, Kubernetes, GitHub Actions, CI/CD, Apache Airflow, CloudWatch, Firebase, Firestore, Firebase Firestore, GCS, DVC, MLflow, AWS S3, AWS VPC, Terraform, HCL, Docker Compose, PyTorch Forecasting, OpenCV, Albumentations, Torchvision, torchvision, transformers, CUDA, CUDA (optional), Apple MPS, Apple MPS (optional), n8n, LaTeX, Webhooks, Pytest, pytest, unittest, SLURM, NVIDIA H200, NVIDIA A100, pgvector, bitsandbytes
 
 ---
 
