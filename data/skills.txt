@@ -9,7 +9,7 @@ ITEMS: Scikit-learn, scikit-learn, XGBoost, PyTorch, TensorFlow, Keras, Random F
 ---
 
 CATEGORY: Data Science
-ITEMS: Pandas, NumPy, SQL, R, Matplotlib, Seaborn, Plotly, NLTK, spaCy, Gensim, Gensim (Word2Vec), TextBlob, Feature Engineering, EDA, ARIMA, Time Series, Statsmodels, Folium, PRAW, Jupyter Notebook, SciPy, Pillow, tqdm, requests, ReportLab, SerpAPI
+ITEMS: Pandas, NumPy, SQL, R, Matplotlib, Seaborn, Plotly, NLTK, spaCy, Gensim, Gensim (Word2Vec), TextBlob, Feature Engineering, EDA, ARIMA, Time Series, Statsmodels, Folium, PRAW, Jupyter Notebook, SciPy, Pillow, tqdm, requests, ReportLab, SerpAPI, Parquet
 
 ---
 
@@ -24,7 +24,7 @@ ITEMS: React 19, Next.js 15, TypeScript, JavaScript, Tailwind CSS, Streamlit, HT
 ---
 
 CATEGORY: Cloud / DevOps / MLOps
-ITEMS: GCP, GKE, GCP Cloud Run, GCP Artifact Registry, Docker, Kubernetes, GitHub Actions, CI/CD, Apache Airflow, CloudWatch, Firebase, Firestore, Firebase Firestore, GCS, DVC, MLflow, AWS S3, AWS VPC, Terraform, HCL, Docker Compose, PyTorch Forecasting, OpenCV, Albumentations, Torchvision, torchvision, transformers, CUDA, CUDA (optional), Apple MPS, Apple MPS (optional), n8n, LaTeX, Webhooks, Pytest, pytest, unittest, SLURM, NVIDIA H200, NVIDIA A100, pgvector, bitsandbytes
+ITEMS: GCP, GKE, GCP Cloud Run, GCP Artifact Registry, Docker, Kubernetes, GitHub Actions, CI/CD, Apache Airflow, CloudWatch, Firebase, Firestore, Firebase Firestore, GCS, DVC, MLflow, AWS S3, AWS VPC, Terraform, HCL, Docker Compose, PyTorch Forecasting, OpenCV, Albumentations, Torchvision, torchvision, transformers, CUDA, CUDA (optional), Apple MPS, Apple MPS (optional), n8n, LaTeX, Webhooks, Pytest, pytest, unittest, SLURM, NVIDIA H200, NVIDIA A100, pgvector, bitsandbytes, Azure ML Pipelines, Azure Data Factory, Azure Blob Storage, Azure Functions, DigitalOcean Kubernetes, DigitalOcean PostgreSQL, Datadog, Locust
 
 ---
 
